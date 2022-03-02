@@ -10,7 +10,7 @@ function App() {
 
   const getGitHub = async() =>{
     
-        let url = "http://localhost:4000/";
+        let url = "https://api.github.com/users/alandgmendes/repos";
         return new Promise(resolve =>
 
             fetch(url, {
@@ -38,7 +38,7 @@ function App() {
  const repoFunc = async() =>{
    let result  = await getGitHub();
     if(result){
-      let repos = result.map(repo => <div key={repo.id}><p>{repo.name}</p></div>);
+      let repos = result.map(repo => <div key={repo.id}><a href={repo.html_url}><p>{repo.name}</p></a></div>);
       setArrayRep(repos);
     }
  }
@@ -50,9 +50,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Live and loud
-        </p>
+        <h1>
+          My repos:
+        </h1>
         <div>
           {arrayRep}
         </div>
